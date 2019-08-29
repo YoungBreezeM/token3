@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+<button id="submit" onclick="Submit()">提交</button></p>
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+<script>
+    let Submit = function(){
+        $.ajax({
+            type: 'POST',
+            url: '/login',
+            data:{userName:'yqf',password:'123456'},
+            dataType: 'json',
+            success: function(data){
+                alert(data.message);
+                if(data.resultCode==1){
+                    window.location.href ='/?token='+data.token;
+                    localStorage.token =data.token;
+                }
+            },
+            error:function(data) {
+                console.log(data.msg);
+            },
+        });
+    }
+</script>
+</body>
+</html>
